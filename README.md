@@ -1,7 +1,7 @@
 # MultiTasksVPSServer
 A docker compose stack to set up several applications on a remote server (VPS, dédicated server asa you have a ssh access and docker installed)
 
-The provided docker-compose is based on docker-swag image to act as a reverse proxy with let's encrypt, and let you expose several applications.
+The provided docker-compose uses several components to act as a reverse proxy with let's encrypt, and let you expose several applications.
 It's a personnal project to déploy atomaticaly with a docker-compose file the following applications:
    - SWAG (and swag dashboard)
       - A nginx gateway which acts as a reverse proxy, a letsencrypt manager, fail2ban protection to safely expose our services 
