@@ -1,5 +1,12 @@
 ---
 version: "2.1"
+
+networks:
+  frontend-network:
+    name: frontend-network
+  backend-network:
+    name: backend-network
+
 services:
   ##########################
   ## SWAG - REVERSE PROXY ##
@@ -31,56 +38,128 @@ services:
       - 80:80
     restart: unless-stopped
 
-  #############
-  ## NETDATA ##
-  #############
-  netdata:
-    image: netdata/netdata
-    container_name: netdata
-    networks:
-      - backend-network
-    hostname: ${NETDATA_HOSTNAME} # set to fqdn of host
-    environment:
-      - TZ=${TZ}
-    expose:
-      - 19999
-    restart: unless-stopped
-    cap_add:
-      - SYS_PTRACE
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - ./netdata/config/:/etc/netdata:rw
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /etc/os-release:/host/etc/os-release:ro
+#  #############
+#  ## NETDATA ##
+#  #############
+#  netdata:
+#    image: netdata/netdata
+#    container_name: netdata
+#    networks:
+#      - backend-network
+#    hostname: ${NETDATA_HOSTNAME} # set to fqdn of host
+#    environment:
+#      - TZ=${TZ}
+#    expose:
+#      - 19999
+#    restart: unless-stopped
+#    cap_add:
+#      - SYS_PTRACE
+#    security_opt:
+#      - apparmor:unconfined
+#    volumes:
+#      - ./netdata/config/:/etc/netdata:rw
+#      - /proc:/host/proc:ro
+#      - /sys:/host/sys:ro
+#      - /etc/os-release:/host/etc/os-release:ro
 
-  #################
-  ## QBITTORRENT ##
-  #################
-  qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:latest
-    container_name: qbittorrent
-    networks:
-      - backend-network
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=${TZ}
-      - WEBUI_PORT=8080
-      - FILE__PASSWORD=./secrets/secret
-    volumes:
-      - ./qbitorrent/config:/config
-      - ./qbitorrent/downloads:/downloads
-    expose:
-      - 8080
-    ports:
-      - 6881:6881
-      - 6881:6881/udp
-    restart: unless-stopped
+#  #################
+#  ## QBITTORRENT ##
+#  #################
+#  qbittorrent:
+#    image: lscr.io/linuxserver/qbittorrent:latest
+#    container_name: qbittorrent
+#    networks:
+#      - backend-network
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=${TZ}
+#      - WEBUI_PORT=8080
+#      - FILE__PASSWORD=./secrets/secret
+#    volumes:
+#      - ./qbitorrent/config:/config
+#      - ./qbitorrent/downloads:/downloads
+#    expose:
+#      - 8080
+#    ports:
+#      - 6881:6881
+#      - 6881:6881/udp
+#    restart: unless-stopped
 
-networks:
-  frontend-network:
-    name: frontend-network
-  backend-network:
-    name: backend-network
+#  #############
+#  ## MARIADB ##
+#  #############
+#  mariadb:
+#    image: mariadb
+#    container_name: mariadb
+#    networks:
+#      - backend-network
+#    command: ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
+#    environment:
+#      - MYSQL_RANDOM_ROOT_PASSWORD=1
+#    volumes:
+#     - ./mariadb/data:/var/lib/mysq
+
+#  ##########
+#  ## PLEX ##
+#  ##########
+#  plex:
+#    container_name: plex
+#    image: plexinc/pms-docker
+#    restart: unless-stopped
+#    networks:
+#      - backend-network
+#    expose:
+#      - 32400
+#      - 32410/udp
+#      - 32412/udp
+#      - 32413/udp
+#      - 32414/udp
+#      - 8324
+#      - 32469
+#      - 1900
+#    environment:
+#      - TZ=${TZ}
+#      - PLEX_CLAIM= # optionnal
+#      - "ADVERTISE_IP=http://plex:32400/,https://plex.${BASE_DOMAIN_URL}"
+#      - 'ALLOWED_NETWORKS=192.168.0.0/16,172.16.0.0/12'
+#    hostname: plex
+#    volumes:
+#      - ./plex/config:/config
+#      - ./qbitorrent/downloads:/movies
+
+#  ############
+#  ## PIWIGO ##
+#  ############
+#  piwigo:
+#    image: lscr.io/linuxserver/piwigo:latest
+#    container_name: piwigo
+#    networks:
+#      - backend-network
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=${TZ}
+#    volumes:
+#      - ./piwigo/config:/config
+#      - ./piwigo/gallery:/gallery
+#    expose:
+#      - 80
+#    restart: unless-stopped
+
+#  ###########
+#  ## KOMGA ##
+#  ###########
+#  komga:
+#    image: gotson/komga
+#    container_name: komga
+#    networks:
+#      - backend-network
+#    volumes:
+#      - ./komga/config:/config
+#      - ./qbitorrent/downloads/ebooks:/data
+#      - TZ=${TZ}
+#    expose:
+#      - 8080
+#    user: "1000:1000"
+#    restart: unless-stopped
