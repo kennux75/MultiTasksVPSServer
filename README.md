@@ -36,13 +36,13 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 
 # USAGE:
  
-   # STEP1: start SWAG and generate the certificates with the SUBDOMAINS variable
-      At this step, you should be able to see the SWAG welcome page on your domain: https://example.org
-      And you should be able to access the SWAG dashboard at the url: https://dashboard.<example.org> (if you have created the domain previously)
+      STEP1: start SWAG and generate the certificates with the SUBDOMAINS variable
+         At this step, you should be able to see the SWAG welcome page on your domain: https://example.org
+         And you should be able to access the SWAG dashboard at the url: https://dashboard.<example.org> (if you have created the domain previously)
 
-      When all is set up correctly, just a docker-compose up -d is enough
+         When all is set up correctly, just a docker-compose up -d is enough
 
-      # For Docker SWAG
+         # For Docker SWAG
 
-      # For netdata
-      Nothing sepcial.. the basic conf should work with when docker-compose up is used
+         # For netdata
+         Nothing sepcial.. the basic conf should work with when docker-compose up is used
