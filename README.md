@@ -26,5 +26,10 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
       - Based on: https://doc.owncloud.com/server/next/admin_manual/installation/docker/
 
 
-# Prerequistes:
-Own the domain use for your server - aka <domain.tld>, example.org etc used in this repo
+# Prerequisites:
+- Own the domain use for your server - aka <domain.tld>, example.org etc used in this repo. 
+- Create an A record for your domain to your server
+   " example.org A XXX.XXX.XXX.XXX"
+- Create the subdomains you want to use (cloud, plex, www, etc) with CNAME records:
+   " www.example.org CNAME example.org."
+   " cloud.example.org CNAME example.org"
