@@ -1,0 +1,89 @@
+---
+version: "2.1"
+services:
+  ##########################
+  ## SWAG - REVERSE PROXY ##
+  ##########################
+  swag:
+    image: lscr.io/linuxserver/swag:latest
+    container_name: swag
+    networks:
+      - frontend-network
+      - backend-network
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      # .env file variable
+      - TZ=${TZ}
+      # .env file variable
+      - URL=${SWAG_URL}
+      - VALIDATION=http
+      # SUBDOMAINS - all the subdomains covered by the let's encrypt certificate. You will have one certificate with SNA (Subject Alternative Name) and all your subdomains based on $URL.
+      - SUBDOMAINS=${SWAG_SUBDOMAINS}
+      - CERTPROVIDER= #optional
+      - DNSPLUGIN=cloudflare #optional
+      - PROPAGATION= #optional
+      - EMAIL= <for letsencrypt>
+      - ONLY_SUBDOMAINS=false #optional
+      - EXTRA_DOMAINS= #optional
+      - STAGING=false #optional
+      - DOCKER_MODS=linuxserver/mods:swag-dashboard
+    volumes:
+      - ./swag/config:/config
+      # If you want to use the fail2ban instance to monitor the SSH accesses, install rsyslogd, or another logging daemon (to have the ssh logging attempt in a file), and mount this file as a volume
+      # I didn't get how to use the fail2ban container with the systemd logging system of the host.
+      # - /var/log/auth.log:/var/log/auth.log
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
+
+  #############
+  ## NETDATA ##
+  #############
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    networks:
+      - backend-network
+    hostname: netdata.<yourdomain.xyz> # set to fqdn of host
+    environment:
+      - TZ=${TZ}
+    expose:
+      - 19999
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - ./netdata/config/:/etc/netdata:rw
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+
+  #################
+  ## QBITTORRENT ##
+  #################
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    networks:
+      - backend-network
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - WEBUI_PORT=8080
+      - FILE__PASSWORD=./secrets/secret
+    volumes:
+      - ./qbitorrent/config:/config
+      - ./qbitorrent/downloads:/downloads
+    expose:
+      - 8080
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
