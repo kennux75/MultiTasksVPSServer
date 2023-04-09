@@ -78,3 +78,9 @@ services:
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
+
+networks:
+  frontend-network:
+    name: frontend-network
+  backend-network:
+    name: backend-network
