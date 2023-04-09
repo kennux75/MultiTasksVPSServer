@@ -15,21 +15,12 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      # .env file variable
       - TZ=${TZ}
-      # .env file variable
       - URL=${SWAG_URL}
-      - VALIDATION=http
       # SUBDOMAINS - all the subdomains covered by the let's encrypt certificate. You will have one certificate with SNA (Subject Alternative Name) and all your subdomains based on $URL.
       - SUBDOMAINS=${SWAG_SUBDOMAINS}
-      - CERTPROVIDER= #optional
-      - DNSPLUGIN=cloudflare #optional
-      - PROPAGATION= #optional
-      - EMAIL= <for letsencrypt>
-      - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS= #optional
-      - STAGING=false #optional
-      - DOCKER_MODS=linuxserver/mods:swag-dashboard
+      - EMAIL=${EMAIL}
+      - DOCKER_MODS=${SWAG_MODS}
     volumes:
       - ./swag/config:/config
       # If you want to use the fail2ban instance to monitor the SSH accesses, install rsyslogd, or another logging daemon (to have the ssh logging attempt in a file), and mount this file as a volume
@@ -48,7 +39,7 @@ services:
     container_name: netdata
     networks:
       - backend-network
-    hostname: netdata.<yourdomain.xyz> # set to fqdn of host
+    hostname: ${NETDATA_HOSTNAME} # set to fqdn of host
     environment:
       - TZ=${TZ}
     expose:
@@ -75,7 +66,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Paris
+      - TZ=${TZ}
       - WEBUI_PORT=8080
       - FILE__PASSWORD=./secrets/secret
     volumes:
@@ -87,3 +78,9 @@ services:
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
+
+networks:
+  frontend-network:
+    name: frontend-network
+  backend-network:
+    name: backend-network
