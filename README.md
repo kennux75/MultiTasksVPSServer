@@ -54,4 +54,4 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
          test
 
 At the end.. Back it UP!
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/jo1cyl0QbWo" title="Caro Emerald - Back It Up (Official Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    [<img src="[https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg](https://img.youtube.com/vi/jo1cyl0QbWo/0.jpg)" width="50%">](https://www.youtube.com/watch?v=jo1cyl0QbWo "Now")
