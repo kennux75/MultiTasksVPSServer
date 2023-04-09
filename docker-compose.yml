@@ -163,3 +163,56 @@ services:
 #      - 8080
 #    user: "1000:1000"
 #    restart: unless-stopped
+
+#  ##############
+#  ## OWNCLOUD ##
+#  ##############
+#  owncloud:
+#    image: owncloud/server:latest
+#    container_name: owncloud
+#    networks:
+#      - backend-network
+#    restart: always
+#    expose:
+#      - 8080
+#    depends_on:
+#      - mariadb
+#      - redis
+#    environment:
+#      - OWNCLOUD_DOMAIN=cloud.${BASE_DOMAIN_URL}
+#      - OWNCLOUD_TRUSTED_DOMAINS=cloud.${BASE_DOMAIN_URL}
+#      - OWNCLOUD_DB_TYPE=mysql
+#      - OWNCLOUD_DB_NAME=${OWNCLOUD_MYSQL_DBNAME}
+#      - OWNCLOUD_DB_USERNAME=${OWNCLOUD_MYSQL_USER}
+#      - OWNCLOUD_DB_PASSWORD=${OWNCLOUD_MYSQL_PASSWORD}
+#      - OWNCLOUD_DB_HOST=mariadb
+#      - OWNCLOUD_ADMIN_USERNAME=owncloud_admin
+#      - OWNCLOUD_ADMIN_PASSWORD=XXXXXXXXXXXXX
+#      - OWNCLOUD_MYSQL_UTF8MB4=true
+#      - OWNCLOUD_REDIS_ENABLED=true
+#      - OWNCLOUD_REDIS_HOST=redis
+#    healthcheck:
+#      test: ["CMD", "/usr/bin/healthcheck"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 5
+#    volumes:
+#      - ./owncloud/data:/mnt/data
+#
+#  ###########
+#  ## REDIS ##
+#  ###########
+#  redis:
+#    image: redis:6
+#    container_name: redis
+#    networks:
+#      - backend-network
+#    restart: always
+#    command: ["--databases", "1"]
+#    healthcheck:
+#      test: ["CMD", "redis-cli", "ping"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+#    volumes:
+#      - ./owncloud/redis:/data
