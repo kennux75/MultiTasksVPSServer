@@ -24,7 +24,9 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
    - ownCloud
       - if you want to use your server as your own cloud storage - encrypted - backup needed - special point further!
       - Based on: https://doc.owncloud.com/server/next/admin_manual/installation/docker/
-
+   - MariaDB
+      - MySQL database used to host apps data
+      - use the ./mariadb/provision.db.sh file to create your own databases
 
 # Prerequisites:
 - Own the domain use for your server - aka <domain.tld>, example.org etc used in this repo. 
