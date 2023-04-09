@@ -36,15 +36,17 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 
 # USAGE:
    STEP1:
-      We will start SWAG and generate the certificates with the SUBDOMAINS variable.
-      Ensure to have <example.org> and all subdomains you want to use already created
+   
+   We will start SWAG and generate the certificates with the SUBDOMAINS variable.
+   Ensure to have <example.org> and all subdomains you want to use already created
       
-         " # docker-compose up -d"
-         " wait a few seconds..."
-         
-      At this step, you should be able to see the SWAG welcome page on your domain: https://example.org
-      And you should be able to access the SWAG dashboard at the url: https://dashboard.<example.org> (if you have created the domain previously)
+         # docker-compose up -d
+         wait a few seconds...
+   
+   At this step, you should be able to see the SWAG welcome page on your domain: https://example.org
+   And you should be able to access the SWAG dashboard at the url: https://dashboard.<example.org> (if you have created the domain previously)
 
    STEP2:
+   
       "plop":
          test
