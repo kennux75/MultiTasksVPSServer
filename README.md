@@ -54,4 +54,4 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
          test
 
 At the end.. Back it UP!
-  [![Watch the video](https://www.youtube.com/watch?v=jo1cyl0QbWo/maxresdefault.jpg)](https://www.youtube.com/watch?v=jo1cyl0QbWo)
+  [<img src="https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=jo1cyl0QbWo "Now")
