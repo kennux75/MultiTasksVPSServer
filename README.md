@@ -37,6 +37,9 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 - Create the subdomains you want to use (cloud, plex, www, etc) with CNAME records:
    " www.example.org CNAME example.org."
    " cloud.example.org CNAME example.org"
+- .env file
+  - There is a .env file provided, used by docker-compose.
+  - Modify it to adapt the differents variables as your domain urls, passwords, etc
 
 # USAGE:
    ### STEP1: Set up SWAG

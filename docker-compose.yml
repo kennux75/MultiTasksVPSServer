@@ -95,7 +95,7 @@ services:
 #      - backend-network
 #    command: ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
 #    environment:
-#      - MYSQL_ROOT_PASSWORD="changeme"
+#      - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
 #    volumes:
 #     - ./mariadb/data:/var/lib/mysql
 #     - ./mariadb/init:/docker-entrypoint-initdb.d
