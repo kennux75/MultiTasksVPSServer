@@ -84,11 +84,11 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
    Cp the necessary files in swag/nginx/proxy-confs/<apps>.sample to swag/nginx/proxy-confs/<apps>.conf.
    Uncomment the corresponding part in the docker-compose file, and restart with a docker-compose down and up.
    
-    ### Qbittorrent
+   - Qbittorrent
    
    No particular changes for qbittorrent. At the first connection, you should be able to connect with the default admin password.
       
-    ### Mariadb, for applications which need a mysql database:
+   - Mariadb, for applications which need a mysql database:
    
    Uncomment the mariadb part in docker-compose file.
 
