@@ -58,8 +58,12 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 
    ### STEP2: Deploy first application and subdomain - netdata
    
-   SWAG comes with predefined configuration files to configure nginx as a reverse proxy. THe configuration files are in swag/nginx/proxy-confs/ directory with the .sample extension.
+   SWAG comes with predefined configuration files to configure nginx as a reverse proxy.
+
+   The configuration files are in swag/nginx/proxy-confs/ directory with the .sample extension.
+
    cp swag/nginx/proxy-confs/netdata.subdomain.conf.sample swag/nginx/proxy-confs/netdata.<something>.conf
+
    Edit it according to your needs.
 
    In the docker-compose file, uncomment the netdata part, and set everything up.
