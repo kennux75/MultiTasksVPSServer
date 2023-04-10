@@ -98,7 +98,9 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
    - Plex:
 
    Prerequisites to deploy the Plex applications:
+
     - Own a plex account on plex.tv
+   
     - Generate a plex claim token (valid for 4minutes) at https://plex.tv/claim/ and set PLEX_CLAIM environment variable.
 
    The volume used by Plex is the same one where qbittorrent puts the downloaded files.
