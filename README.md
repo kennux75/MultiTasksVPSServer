@@ -1,4 +1,4 @@
-### MultiTasksVPSServer
+# MultiTasksVPSServer
 
 A docker compose stack to set up several applications on a remote server (VPS, dédicated server asa you have a ssh access and docker installed)
 
@@ -29,7 +29,7 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
       - MySQL database used to host apps data
       - use the ./mariadb/provision.db.sh file to create your own databases
 
-### Prerequisites:
+# Prerequisites:
 
 - Own the domain use for your server - aka <domain.tld>, example.org etc used in this repo. 
 - Create an A record for your domain to your server
@@ -38,8 +38,8 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
    " www.example.org CNAME example.org."
    " cloud.example.org CNAME example.org"
 
-### USAGE:
-   # STEP1:
+# USAGE:
+   ### STEP1: Set up SWAP
    
    In the docker-compose.yml file, uncomment only the SWAG part.
    We will start SWAG and generate the certificates with the SUBDOMAINS variable.
@@ -56,7 +56,7 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 
    Moreover, the different configuration files have been generated in swag/ directory
 
-   # STEP2:
+   ### STEP2: Deploy first application and subdomain - netdata
    
    SWAG comes with predefined configuration files to configure nginx as a reverse proxy. THe configuration files are in swag/nginx/proxy-confs/ directory with the .sample extension.
    cp swag/nginx/proxy-confs/netdata.subdomain.conf.sample swag/nginx/proxy-confs/netdata.<something>.conf
@@ -74,7 +74,23 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
       # docker exec -it swag htpasswd -c /config/nginx/.htpasswd anyusername
 
    And uncomment the htpasswd section in the swag/nginx/proxy-confs/netdata.<something>.conf file.
+   You can reload the nginx configuration by restarting the swag container.
+   
+      # docker-compose restart swag
+   
 
-At the end.. Back it UP!
-
+   ### STEP3: Deploy the applications you want
+   
+   Cp the necessary files in swag/nginx/proxy-confs/<apps>.sample to swag/nginx/proxy-confs/<apps>.conf.
+   Uncomment the corresponding part in the docker-compose file, and restart with a docker-compose down and up.
+   
+      ### Qbittorrent
+   
+      No particular changes for qbittorrent. At the first connection, you should be able to connect with the default admin password.
+      
+      ### Mariadb, for applications which need a mysql database:
+   
+      Uncomment the mariadb part in docker-compose file.
+   
+   At the end.. Back it UP!
     [<img src="[https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg](https://img.youtube.com/vi/jo1cyl0QbWo/0.jpg)" width="50%">](https://www.youtube.com/watch?v=jo1cyl0QbWo "Now")
