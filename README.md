@@ -27,7 +27,7 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
       - Based on: https://doc.owncloud.com/server/next/admin_manual/installation/docker/
    - MariaDB
       - MySQL database used to host apps data
-      - use the ./mariadb/provision.db.sh file to create your own databases
+      - use the ./mariadb/init/provision.sql file to create your own databases
 
 # Prerequisites:
 
