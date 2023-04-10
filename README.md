@@ -129,7 +129,10 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 
    The owncloud part in docker-compose.yml is a lightly modified of https://raw.githubusercontent.com/owncloud/docs-server/master/modules/admin_manual/examples/installation/docker/docker-compose.yml
 
+   Uncomment the owncloud part, and the redis part as well, it's a dependency of owncloud.
+
    Otherwise, follow instructions at https://doc.owncloud.com/server/next/admin_manual/installation/docker/, setting the variables OWNCLOUD_DOMAIN and OWNCLOUD_TRUSTED_DOMAINS.
+
 
 At the end.. Back it UP!
 

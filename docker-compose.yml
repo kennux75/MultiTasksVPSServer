@@ -76,8 +76,8 @@ services:
 #      - TZ=${TZ}
 #      - WEBUI_PORT=8080
 #    volumes:
-#      - ./qbitorrent/config:/config
-#      - ./qbitorrent/downloads:/downloads
+#      - ./qbittorrent/config:/config
+#      - ./qbittorrent/downloads:/downloads
 #    expose:
 #      - 8080
 #    ports:
@@ -156,7 +156,7 @@ services:
 #    networks:
 #      - backend-network
 #    volumes:
-#      - ./komga/config:/config
+#      - ./komga:/config
 #      - ./qbitorrent/downloads/ebooks:/data
 #      - TZ=${TZ}
 #    expose:
@@ -179,15 +179,15 @@ services:
 #      - mariadb
 #      - redis
 #    environment:
-#      - OWNCLOUD_DOMAIN=cloud.${BASE_DOMAIN_URL}
-#      - OWNCLOUD_TRUSTED_DOMAINS=cloud.${BASE_DOMAIN_URL}
+#      - OWNCLOUD_DOMAIN=${OWNCLOUD_DOMAIN}
+#      - OWNCLOUD_TRUSTED_DOMAINS=${OWNCLOUD_DOMAIN}
 #      - OWNCLOUD_DB_TYPE=mysql
 #      - OWNCLOUD_DB_NAME=${OWNCLOUD_MYSQL_DBNAME}
 #      - OWNCLOUD_DB_USERNAME=${OWNCLOUD_MYSQL_USER}
 #      - OWNCLOUD_DB_PASSWORD=${OWNCLOUD_MYSQL_PASSWORD}
 #      - OWNCLOUD_DB_HOST=mariadb
-#      - OWNCLOUD_ADMIN_USERNAME=owncloud_admin
-#      - OWNCLOUD_ADMIN_PASSWORD=XXXXXXXXXXXXX
+#      - OWNCLOUD_ADMIN_USERNAME=${OWNCLOUD_ADMIN_USERNAME}
+#      - OWNCLOUD_ADMIN_PASSWORD=${OWNCLOUD_ADMIN_PASSWORD}
 #      - OWNCLOUD_MYSQL_UTF8MB4=true
 #      - OWNCLOUD_REDIS_ENABLED=true
 #      - OWNCLOUD_REDIS_HOST=redis
