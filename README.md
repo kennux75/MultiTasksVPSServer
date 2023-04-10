@@ -1,4 +1,5 @@
-# MultiTasksVPSServer
+### MultiTasksVPSServer
+
 A docker compose stack to set up several applications on a remote server (VPS, dédicated server asa you have a ssh access and docker installed)
 
 The provided docker-compose uses several components to act as a reverse proxy with let's encrypt, and let you expose several applications.
@@ -28,7 +29,8 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
       - MySQL database used to host apps data
       - use the ./mariadb/provision.db.sh file to create your own databases
 
-# Prerequisites:
+### Prerequisites:
+
 - Own the domain use for your server - aka <domain.tld>, example.org etc used in this repo. 
 - Create an A record for your domain to your server
    " example.org A XXX.XXX.XXX.XXX"
@@ -36,8 +38,8 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
    " www.example.org CNAME example.org."
    " cloud.example.org CNAME example.org"
 
-# USAGE:
-   STEP1:
+### USAGE:
+   # STEP1:
    
    In the docker-compose.yml file, uncomment only the SWAG part.
    We will start SWAG and generate the certificates with the SUBDOMAINS variable.
@@ -54,7 +56,7 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 
    Moreover, the different configuration files have been generated in swag/ directory
 
-   STEP2:
+   # STEP2:
    
    SWAG comes with predefined configuration files to configure nginx as a reverse proxy. THe configuration files are in swag/nginx/proxy-confs/ directory with the .sample extension.
    cp swag/nginx/proxy-confs/netdata.subdomain.conf.sample swag/nginx/proxy-confs/netdata.<something>.conf
