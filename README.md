@@ -56,6 +56,19 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 
    Moreover, the different configuration files have been generated in swag/ directory
 
+   ### Optionnal: protect a subdomain with a .htpasswd:
+
+   If you want to protect the access to this sudomain, you can use the htpasswd command in swag:
+
+      # docker exec -it swag htpasswd -c /config/nginx/.htpasswd anyusername
+
+   And uncomment the htpasswd section in the swag/nginx/proxy-confs/<apps>.<something>.conf file.
+
+   You can reload the nginx configuration by restarting the swag container.
+
+      # docker-compose restart swag
+
+
    ### STEP2: Deploy first application and subdomain - netdata
    
    SWAG comes with predefined configuration files to configure nginx as a reverse proxy.
@@ -70,18 +83,12 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 
       # docker-compose down && docker-compose up -d
 
-   You should be able to access netdata at the url you've configured: for instance: netdata.example.org
-   If not, check that netdata is correctly started, or check nginx logs.
+   You should be able to access netdata at the url you've configured, for instance: netdata.example.org
 
-   If you want to protect the access to this sudomain, you can use the htpasswd command in swag:
+   If not, check that netdata has correctly started, or check nginx logs.
 
-      # docker exec -it swag htpasswd -c /config/nginx/.htpasswd anyusername
+   The nginx logs are in swag/logs/nginx/ directory.
 
-   And uncomment the htpasswd section in the swag/nginx/proxy-confs/netdata.<something>.conf file.
-   You can reload the nginx configuration by restarting the swag container.
-   
-      # docker-compose restart swag
-   
 
    ### STEP3: Deploy the applications you want
    
