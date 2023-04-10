@@ -108,8 +108,15 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
    - Komga:
 
    Komga uses a subdirectory of qbittorrent as well qbittorrent/downloads/ebooks
+
    When you use qbittorrent to download your ebooks, or if you want to read your own ebooks, place them in this directory
 
+   - OwnCloud:
+
+   The owncloud part in docker-compose.yml is a lightly modified of https://raw.githubusercontent.com/owncloud/docs-server/master/modules/admin_manual/examples/installation/docker/docker-compose.yml
+
+   Otherwise, follow instructions at https://doc.owncloud.com/server/next/admin_manual/installation/docker/, setting the variables OWNCLOUD_DOMAIN and OWNCLOUD_TRUSTED_DOMAINS.
 
 At the end.. Back it UP!
-    [<img src="[https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg](https://img.youtube.com/vi/jo1cyl0QbWo/0.jpg)" width="50%">](https://www.youtube.com/watch?v=jo1cyl0QbWo "Now")
+
+Still a part to add to integrate KOPIA, a backup solution.
