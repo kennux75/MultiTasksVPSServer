@@ -39,7 +39,7 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
    " cloud.example.org CNAME example.org"
 
 # USAGE:
-   ### STEP1: Set up SWAP
+   ### STEP1: Set up SWAG
    
    In the docker-compose.yml file, uncomment only the SWAG part.
    We will start SWAG and generate the certificates with the SUBDOMAINS variable.
@@ -91,6 +91,11 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
       ### Mariadb, for applications which need a mysql database:
    
       Uncomment the mariadb part in docker-compose file.
+
+      In the mariadb/init/ directory, modify the provision.sql file to create the needed databases and users at the first start.
+
+      Uncomment the application part in docker-compose (piwigo, owncloud,...) and change the environment variables to setup database access.
    
+
    At the end.. Back it UP!
     [<img src="[https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg](https://img.youtube.com/vi/jo1cyl0QbWo/0.jpg)" width="50%">](https://www.youtube.com/watch?v=jo1cyl0QbWo "Now")

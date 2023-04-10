@@ -1,0 +1,10 @@
+# create databases and users
+
+CREATE DATABASE IF NOT EXISTS `piwigo`;
+CREATE USER IF NOT EXISTS 'piwigo' IDENTIFIED BY 'XXXX';
+GRANT ALL PRIVILEGES ON piwigo.* TO 'piwigo';
+
+CREATE DATABASE IF NOT EXISTS `owncloud`;
+CREATE USER IF NOT EXISTS 'owncloud' IDENTIFIED BY 'XXXX';
+GRANT ALL PRIVILEGES ON owncloud.* TO 'owncloud';
+

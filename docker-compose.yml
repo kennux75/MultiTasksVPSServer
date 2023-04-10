@@ -75,7 +75,6 @@ services:
 #      - PGID=1000
 #      - TZ=${TZ}
 #      - WEBUI_PORT=8080
-#      - FILE__PASSWORD=./secrets/secret
 #    volumes:
 #      - ./qbitorrent/config:/config
 #      - ./qbitorrent/downloads:/downloads
@@ -96,9 +95,10 @@ services:
 #      - backend-network
 #    command: ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
 #    environment:
-#      - MYSQL_RANDOM_ROOT_PASSWORD=1
+#      - MYSQL_ROOT_PASSWORD="changeme"
 #    volumes:
-#     - ./mariadb/data:/var/lib/mysq
+#     - ./mariadb/data:/var/lib/mysql
+#     - ./mariadb/init:/docker-entrypoint-initdb.d
 
 #  ##########
 #  ## PLEX ##
