@@ -39,19 +39,39 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
 # USAGE:
    STEP1:
    
+   In the docker-compose.yml file, uncomment only the SWAG part.
    We will start SWAG and generate the certificates with the SUBDOMAINS variable.
    Ensure to have <example.org> and all subdomains you want to use already created
       
          # docker-compose up -d
          wait a few seconds...
    
+         Check if everything is OK
+         # docker logs swag
+
    At this step, you should be able to see the SWAG welcome page on your domain: https://example.org
    And you should be able to access the SWAG dashboard at the url: https://dashboard.<example.org> (if you have created the domain previously)
 
+   Moreover, the different configuration files have been generated in swag/ directory
+
    STEP2:
    
-      "plop":
-         test
+   SWAG comes with predefined configuration files to configure nginx as a reverse proxy. THe configuration files are in swag/nginx/proxy-confs/ directory with the .sample extension.
+   cp swag/nginx/proxy-confs/netdata.subdomain.conf.sample swag/nginx/proxy-confs/netdata.<something>.conf
+   Edit it according to your needs.
+
+   In the docker-compose file, uncomment the netdata part, and set everything up.
+
+      # docker-compose down && docker-compose up -d
+
+   You should be able to access netdata at the url you've configured: for instance: netdata.example.org
+   If not, check that netdata is correctly started, or check nginx logs.
+
+   If you want to protect the access to this sudomain, you can use the htpasswd command in swag:
+
+      # docker exec -it swag htpasswd -c /config/nginx/.htpasswd anyusername
+
+   And uncomment the htpasswd section in the swag/nginx/proxy-confs/netdata.<something>.conf file.
 
 At the end.. Back it UP!
   [![Watch the video](https://www.youtube.com/watch?v=jo1cyl0QbWo/maxresdefault.jpg)](https://www.youtube.com/watch?v=jo1cyl0QbWo)

@@ -29,7 +29,7 @@ services:
       - EMAIL=${EMAIL}
       - DOCKER_MODS=${SWAG_MODS}
     volumes:
-      - ./swag/config:/config
+      - ./swag/:/config
       # If you want to use the fail2ban instance to monitor the SSH accesses, install rsyslogd, or another logging daemon (to have the ssh logging attempt in a file), and mount this file as a volume
       # I didn't get how to use the fail2ban container with the systemd logging system of the host.
       # - /var/log/auth.log:/var/log/auth.log
@@ -57,7 +57,7 @@ services:
 #    security_opt:
 #      - apparmor:unconfined
 #    volumes:
-#      - ./netdata/config/:/etc/netdata:rw
+#      - ./netdata:/etc/netdata:rw
 #      - /proc:/host/proc:ro
 #      - /sys:/host/sys:ro
 #      - /etc/os-release:/host/etc/os-release:ro
