@@ -88,14 +88,26 @@ It's a personnal project to déploy atomaticaly with a docker-compose file the f
    
    No particular changes for qbittorrent. At the first connection, you should be able to connect with the default admin password.
       
-   - Mariadb, for applications which need a mysql database:
+   - Mariadb: for applications which need a mysql database:
    
    Uncomment the mariadb part in docker-compose file.
 
    In the mariadb/init/ directory, modify the provision.sql file to create the needed databases and users at the first start.
-
    Uncomment the application part in docker-compose (piwigo, owncloud,...) and change the environment variables to setup database access.
-   
 
-   At the end.. Back it UP!
+   - Plex:
+
+   Prerequisites to deploy the Plex applications:
+    - Own a plex account on plex.tv
+    - Generate a plex claim token (valid for 4minutes) at https://plex.tv/claim/ and set PLEX_CLAIM environment variable.
+
+   The volume used by Plex is the same one where qbittorrent puts the downloaded files.
+
+   - Komga:
+
+   Komga uses a subdirectory of qbittorrent as well qbittorrent/downloads/ebooks
+   When you use qbittorrent to download your ebooks, or if you want to read your own ebooks, place them in this directory
+
+
+At the end.. Back it UP!
     [<img src="[https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg](https://img.youtube.com/vi/jo1cyl0QbWo/0.jpg)" width="50%">](https://www.youtube.com/watch?v=jo1cyl0QbWo "Now")
